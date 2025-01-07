@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes rise {
+  0% {
+    transform: translate(var(--start-x), 100%) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--max-opacity);
+  }
+  75% {
+    opacity: var(--max-opacity);
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes burst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 15px #ff6b08;
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 25px #ff6b08;
+  }
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, var(--particle-color) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: rise var(--rise-duration) ease-out infinite;
+  opacity: 0;
+}
+
+.burst-particle {
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--burst-color) 0%, transparent 70%);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: burst 0.5s ease-out forwards;
+}
